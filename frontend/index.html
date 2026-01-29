@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dados Reais</title>
+  <style>
+    body {
+      background: #0b0f1a;
+      color: #e5e7eb;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 { color: #38bdf8; }
+    .card {
+      background: #111827;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌍 Dados Reais da Internet</h1>
+<div id="dados">Carregando...</div>
+
+<script>
+fetch("http://localhost:3000/api/world")
+  .then(res => res.json())
+  .then(data => {
+    const div = document.getElementById("dados");
+    div.innerHTML = "";
+    data.forEach(item => {
+      div.innerHTML += `
+        <div class="card">
+          <strong>${item.API}</strong><br>
+          ${item.Description}
+        </div>
+      `;
+    });
+  })
+  .catch(() => {
+    document.getElementById("dados").innerText = "Erro ao carregar dados";
+  });
+</script>
+
+</body>
+</html>
