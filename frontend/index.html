@@ -2,47 +2,43 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Dados Reais</title>
+  <title>WorldPulse</title>
   <style>
     body {
-      background: #0b0f1a;
-      color: #e5e7eb;
+      margin: 0;
       font-family: Arial, sans-serif;
-      padding: 20px;
+      background: #0b0f14;
+      color: #e6edf3;
     }
-    h1 { color: #38bdf8; }
-    .card {
+    header {
       background: #111827;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 10px;
+      padding: 16px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      padding: 16px;
+    }
+    .card {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    a {
+      color: #60a5fa;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🌍 WorldPulse</h1>
+    <p>Observatório global em tempo quase real</p>
+  </header>
 
-<h1>🌍 Dados Reais da Internet</h1>
-<div id="dados">Carregando...</div>
+  <div class="grid" id="grid"></div>
 
-<script>
-fetch("http://localhost:3000/api/world")
-  .then(res => res.json())
-  .then(data => {
-    const div = document.getElementById("dados");
-    div.innerHTML = "";
-    data.forEach(item => {
-      div.innerHTML += `
-        <div class="card">
-          <strong>${item.API}</strong><br>
-          ${item.Description}
-        </div>
-      `;
-    });
-  })
-  .catch(() => {
-    document.getElementById("dados").innerText = "Erro ao carregar dados";
-  });
-</script>
-
+  <script src="app.js"></script>
 </body>
 </html>
